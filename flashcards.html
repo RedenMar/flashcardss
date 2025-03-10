@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Flashcard</h1>
+        <h4><img src="mylogoo.PNG" alt="My Flashcard Logo"></h4>
+        <button id="dark-mode-toggle">🌙</button>
+    </header>
+    <h2 id="set-title">Flashcards</h2>
+    <button onclick="goBack()">🔙 Back</button>
+    <button onclick="addFlashcard()">+ Add Flashcard</button>
+    <button id="shuffle-cards">🔀 Shuffle</button>
+    <button id="start-quiz">📝 Start Quiz</button>
+    <div id="quiz-modal" class="modal-overlay" style="display: none;">
+        <div class="quiz-card">
+            <div class="quiz-front">
+                <p id="quiz-question">Question appears here...</p>
+                <div class="quiz-input-container">
+                    <input type="text" id="quiz-input" placeholder="Type your answer..."autocomplete="off">
+                    <button id="quiz-submit">Submit</button>
+                    <button id="quiz-next" style="display: none;">Next</button>
+                </div>
+            </div>
+            <div class="quiz-back">
+                <p id="quiz-answer-text"></p>
+            </div>
+            <button id="quiz-close">❌</button>
+        </div>
+    </div>
+    </div>
+    <div id="flashcards-container">
+    </div>
+    <body id="flashcards-body">
+
+    <script src="flashcards.js"></script>
+</body>
+</html>

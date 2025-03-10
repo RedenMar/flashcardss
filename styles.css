@@ -1,0 +1,516 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap');
+header {
+    position:fixed;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(to left, #5c626d, #1c2023);
+    color: white;
+    padding: 1px 5px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    border-radius: px px 50px 50px;
+    font-family: 'Baloo 2', cursive;
+    border-width: 0px;
+    transition: top 0.3s ease-in-out;
+}
+body {
+    background: linear-gradient(to left, #444850, #1c2023);
+    padding: 0;
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Baloo 2', cursive;
+}
+
+h1 {
+    text-align: center;
+    margin-left: 20px;
+}
+#set-title {
+    font-size: 70px;
+
+}
+.dark-mode {
+    background: linear-gradient(to left, #c8c7c7, #888989);
+    color: #000000;
+}
+h4 img{
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    padding: 12px 10px;
+    width: 110px; 
+    height: auto;
+}
+h5{
+    margin-top: 10%;
+}
+#sets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Auto-fit layout */
+    gap: 20px; /* Ensures space between sets */
+    padding: 10px; /* Adds spacing inside the container */
+}
+#flashcards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center; 
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.flashcard-set {
+    background: linear-gradient(to top, #3c3f47, #a2adb8);
+    padding: 10px;
+    border-radius: 8px 8px 8px 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+    position: relative;
+    width: 150px;
+    height: 200px; 
+    display: block;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-between; 
+    margin-top: 10px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.placeholder {
+    visibility: hidden;
+    width: 150px;
+    height: 200px; 
+    display: block;
+}
+.flashcard-set.dragging {
+        opacity: 0.5;
+        transform: scale(1.1);
+        cursor:grabbing;
+        transition: none;
+}
+.set-image {
+    width: 100px;
+    height: 100x;
+    margin-bottom: 5px;
+    background: transparent;
+    pointer-events: none; /* Ignore clicks */
+}
+.flashcard-set h3 {
+    margin: 0; 
+    text-align: center;
+    font-size: 20px; 
+}
+.flashcard-set image
+.flashcard-set h3{
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Standard */
+
+}
+.flashcard-set .button-container {
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 10px;
+    width: 100%; 
+    padding: 5px 10px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 10px; 
+}
+
+.flashcard-set button {
+    position: relative;
+    top: -35px;
+    right: -26px;
+    cursor: pointer;
+    border-radius: 20px;
+    border-style: solid;
+    background: none;
+    color: rgb(0, 0, 0);
+    transition: 0.3s;
+    font-size: xx-small;
+    align-items: center;
+    justify-content: center;
+    
+}
+#add-set{
+    width: 100px;
+}
+h5{
+    font-size: xx-large;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+}
+.flashcard-set button:hover {
+    background-color: #ea2121;
+}
+
+.flashcard-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    gap: 15px;
+}
+
+.flashcard {
+    width: 300px;
+    height: 180px;
+    perspective: 1000px;
+    position: relative;
+    cursor: pointer;
+    margin: 20px;
+    min-height: 200px;
+}
+
+.flashcard-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    position: relative;
+    color: #000000;
+}
+
+.flashcard.flip .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Baloo 2', cursive;
+    border: 1px solid #ffffff;
+    border-top: 4px solid #c80000;
+    line-height: 1.5;
+    font-size: clamp(12px, 2vw, 16px);
+    background: repeating-linear-gradient(white, white 28px, #d1d1d1 29px, white 30px);
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front p,
+.flashcard-back p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 5px;
+    font-size: clamp(12px, 1.8vw, 16px); 
+}
+button {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
+button:hover {
+    background: #ffdb6f;
+}
+.edit-input {
+    width: 120px; /* Fixed width */
+    background: none;
+}
+#add-set{
+    height: 55px;
+    width: 150px;
+}
+#dark-mode-toggle, #import, #export, #home {
+    position:absolute;
+    top: -13px;
+    padding: 12px 10px;
+    background: linear-gradient(to bottom, #282e33, #2b3238);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: medium;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
+
+#dark-mode-toggle {
+    right: 20px;
+}
+
+#import {
+    right: 70px;
+}
+#home{
+    right: 170px
+}
+#export {
+    right: 120px;
+}
+#dark-mode-toggle:hover {
+    background-color: #555;
+}
+#search {
+    background: #2f373f;
+    width: 150px; 
+    height: 40px;
+    font-size: 16px;
+    padding: 8px;
+    border: 0px solid #000000;
+    border-radius: 30px;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 600px) {
+    #search {
+        width: 200px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+h2 { 
+    font-size:x-large;
+    border: #1e1e1e;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.input-form {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 320px;
+    border-top: 4px solid #c80000;
+    background: repeating-linear-gradient(white, white 28px, #d1d1d1 29px, white 30px);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.input-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.input-form input, 
+.input-form textarea {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.form-buttons button {
+    background: #ad7327;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px;
+}
+
+.form-buttons button:hover {
+    background: #0056b3;
+    
+}
+.set-input-form {
+    background: linear-gradient(to top, #595e6a, #86929d);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 250px;
+    height: 150px;
+    font-family: Arial, sans-serif;
+    border-top: 4px solid #ffffff;
+}
+.set-input-form input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #b4a773;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.set-input-form button {
+    background: #ad7327;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.set-input-form button:hover {
+    background: #0056b3;
+}
+.confirmation-box {
+    background: black;
+    color: white; 
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+
+.dark-mode .confirmation-box {
+    background: white;
+    color: black;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    background: #c80000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-buttons button:hover {
+    background: #a00000;
+}
+
+#cancel-delete {
+    background: gray;
+}
+
+#cancel-delete:hover {
+    background: darkgray;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Blur effect */
+}
+
+.quiz-card {
+    
+    position: relative;
+    width: 320px;
+    height: 250px; /* Increase height if needed */
+    perspective: 1000px;
+    transition: transform 0.6s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Push elements apart */
+    padding: 15px;
+    background: white;
+    font-size: 16px;
+    font-family: 'Baloo 2', cursive;
+    border: 1px solid #ffffff;
+    border-top: 4px solid #c80000;
+    line-height: 1.5;
+    font-size: clamp(12px, 2vw, 16px);
+    background: repeating-linear-gradient(white, white 28px, #d1d1d1 29px, white 30px);
+}
+
+.quiz-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Keeps space for buttons */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+
+.quiz-front p {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+}
+
+.quiz-input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#quiz-input {
+    width: 90%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+#quiz-submit, #quiz-next {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 50%;
+    bottom: 50px;
+}
+
+#quiz-submit:hover, #quiz-next:hover {
+    background-color: #0056b3;
+}
